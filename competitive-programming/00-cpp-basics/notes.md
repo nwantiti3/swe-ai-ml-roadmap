@@ -9,7 +9,7 @@
 using namespace std;       // lets us write cout instead of std::cout
 
 int main() {
-    cout << "Hello, IEEEXtreme!" << '\n';
+    cout << "Hello, ICPC!" << '\n';
     return 0;
 }
 ```
