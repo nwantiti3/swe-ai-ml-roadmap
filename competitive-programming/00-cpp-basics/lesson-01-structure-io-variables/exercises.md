@@ -1,6 +1,6 @@
 # Module 00, Lesson 1: Exercises
 
-Try each one alone for 20 to 30 minutes before using hints. Use hints one at a time. Put your solutions in a `solutions/` folder next to this file, and log any mistake in [`../../error-log.md`](../../error-log.md).
+Try each one alone for 20 to 30 minutes before using hints. Use hints one at a time. Put your solutions in a `solutions/` folder next to this file, and log any mistake in [`../../../error-log.md`](../../../error-log.md).
 
 ## Exercise 1: Sum and product
 Read two integers. Print their sum on the first line and their product on the second line.

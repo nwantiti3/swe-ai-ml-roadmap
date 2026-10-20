@@ -10,8 +10,8 @@ Legend: 🟢 done · 🟡 in progress · ⚪ planned
 |:--|:--|:-:|:--|
 | 00 C++ basics | 1. Program structure, I/O, variables | 🟡 | |
 | 00 C++ basics | 2. Conditions and loops | ⚪ | |
-| 00 C++ basics | 3. Functions and `vector` | ⚪ | |
-| 00 C++ basics | 4. Contest template and fast I/O | ⚪ | |
+| 00 C++ basics | 3. Functions, vectors, strings | ⚪ | |
+| 00 C++ basics | 4. Contest toolkit | ⚪ | |
 | 01 STL and toolkit | | ⚪ | |
 | 02 Core techniques | | ⚪ | |
 | 03 Graphs | | ⚪ | |
