@@ -10,6 +10,8 @@ using namespace std;       // lets us write cout instead of std::cout
 
 int main() {
     cout << "Hello, ICPC!" << '\n';
+     // note: noticing the difference bwtewwn here and C
+
     return 0;
 }
 ```
@@ -19,6 +21,7 @@ Code: [`examples/01_hello.cpp`](examples/01_hello.cpp)
 - `main()` is where every C++ program starts.
 - `cout <<` prints. `'\n'` starts a new line.
 - Every statement ends with `;`.
+- To leave some notes to be read and noticed while coding or revising. type `//` then write your note
 
 ### Compile and run
 
@@ -51,7 +54,7 @@ bool ok = true;       // true or false
 ```cpp
 int x, y;
 cin >> x >> y;          // reads two numbers separated by spaces or newlines
-cout << x + y << '\n';
+cout << x + y << '\n'; 
 ```
 
 Code: [`examples/02_add.cpp`](examples/02_add.cpp)
