@@ -82,6 +82,109 @@ Code: [`examples/03_overflow.cpp`](examples/03_overflow.cpp)
 
 `a * b` with two `int` values is computed in `int`. If the real result is too big, it wraps around to a wrong number **before** it is stored anywhere. Storing it in a `long long` afterward does not fix it. Convert one operand first: `(long long)a * b`.
 
+TO make all is clarified, here a detailed explanation for code 4
+
+```cpp
+long long wrong = (long long)(a * b);   // WRONG
+long long right = (long long)a * b;     // RIGHT
+```
+
+In the second line, the parentheses are around `long long` only, not around `a*b`.
+
+## Why the first one is wrong
+
+C++ always evaluates the **inside of the parentheses first**:
+
+```
+(long long)(a * b)
+            ^^^^^
+step 1: a * b is calculated. Both are int, so the math is done in int.
+        The real answer (10^18) doesn't fit, so it wraps around to -1486618624.
+step 2: (long long) converts that already-broken number to long long.
+```
+
+The cast arrives too late: you are converting a wrong number into a bigger box. The box is bigger, but the number is still -1486618624.
+
+An analogy: a calculator with a 10-digit display shows garbage after an overflow. Writing the garbage on a bigger sheet of paper doesn't fix it.
+
+## Why the second one is right
+
+```
+(long long)a * b
+```
+
+A cast applies only to the thing right after it, so this means `((long long)a) * b`.
+
+```
+step 1: (long long)a   turns a into a long long.
+step 2: long long * int. C++ promotes b to long long as well,
+        so the multiplication is done in long long.
+        Result: 1000000000000000000. Correct.
+```
+
+You convert **before** the multiplication, so the multiplication itself has room.
+
+## Your second line
+
+```cpp
+long long right = long long (a*b);
+```
+
+This has two problems:
+
+1. It **doesn't compile**. In C++, the function-style form `type(value)` works only with a one-word type name, and `long long` has two words. You would get an error like "expected primary-expression before 'long'".
+2. If you fix the syntax (for example, `ll(a*b)`), it is the same as the wrong line, because `a*b` is still calculated first, in `int`.
+
+## All the variants
+
+| Code | Multiplication done in | Result |
+|:--|:--|:-:|
+| `(long long)(a * b)` | `int` | ❌ wrong |
+| `long long x = a * b;` | `int` | ❌ wrong |
+| `(long long)a * b` | `long long` | ✅ |
+| `a * (long long)b` | `long long` | ✅ |
+| `1LL * a * b` | `long long` | ✅ |
+| `static_cast<long long>(a) * b` | `long long` | ✅ |
+
+Rule: **convert one of the numbers before the `*`, not the result after it.**
+
+## The best habit
+
+Avoid the cast problem by declaring the variables as `long long` in the first place:
+
+```cpp
+long long a = 1000000000, b = 1000000000;
+cout << a * b << '\n';    // correct, no cast needed
+```
+
+Here is your program with the fix:
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a = 1000000000, b = 1000000000;
+    long long wrong = (long long)(a * b);   // multiplies in int first
+    long long right = (long long)a * b;     // converts a first
+    cout << "wrong: " << wrong << '\n';     // -1486618624
+    cout << "right: " << right << '\n';     // 1000000000000000000
+    return 0;
+}
+```
+
+## Quick check
+
+What does each line print, if `a = 100000` and `b = 100000` (both `int`)?
+
+```cpp
+cout << a * b << '\n';
+cout << (long long)(a * b) << '\n';
+cout << (long long)a * b << '\n';
+cout << 1LL * a * b << '\n';
+```
+
+
 ## Key rules
 - Every statement ends with `;`.
 - `int` is not enough when values or products can pass about 2·10^9. Use `long long`.
