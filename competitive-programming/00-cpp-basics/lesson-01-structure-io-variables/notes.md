@@ -10,7 +10,7 @@ using namespace std;       // lets us write cout instead of std::cout
 
 int main() {
     cout << "Hello, ICPC!" << '\n';
-     // note: noticing the difference bwtewwn here and C
+     // note: noticing the difference between here and C
 
     return 0;
 }
