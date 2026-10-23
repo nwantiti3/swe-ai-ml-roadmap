@@ -51,6 +51,87 @@ Code: [`examples/02_grade.cpp`](examples/02_grade.cpp)
 
 > **Negative remainders.** In C++, `-3 % 2` is `-1`, not `1`. Test evenness with `n % 2 == 0`, never `n % 2 == 1`.
 
+### More about the (!) (not) logical operation
+`!` flips true to false and false to true.
+
+| `x` | `!x` |
+|:-:|:-:|
+| true | false |
+| false | true |
+
+In C++, any non-zero number counts as true, and `0` counts as false. Printing a bool shows `1` for true and `0` for false.
+
+## A runnable example
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    bool ok = false;
+    cout << ok << ' ' << !ok << '\n';          // 0 1
+
+    int n = 7;
+    cout << !(n % 2 == 0) << '\n';             // 1  (n is NOT even)
+    cout << !n << '\n';                        // 0  (7 is non-zero = true, so !7 = false)
+    cout << !0 << '\n';                        // 1
+
+    int x = 15;
+    if (!(x > 0 && x < 10)) {
+        cout << "x is NOT between 1 and 9\n";  // prints
+    }
+    return 0;
+}
+```
+
+## Where `!` is useful
+
+**1. Flags and loops**
+```cpp
+bool found = false;
+while (!found) {
+    // keep searching until found becomes true
+}
+```
+
+**2. Skipping things in a loop**
+```cpp
+if (!isPrime(i)) continue;   // skip every number that is not prime
+```
+
+**3. Reversing a whole condition**
+```cpp
+if (!(a == b)) ...   // same as: if (a != b)
+```
+
+## Two things to be careful about
+
+**Parentheses.** `!` applies only to the thing right after it:
+
+```cpp
+!(x > 0 && x < 10)   // NOT (both true)
+!x > 0               // means (!x) > 0, almost never what you want
+```
+
+**De Morgan's laws.** Moving `!` inside a condition flips `&&` to `||` and the other way round:
+
+```cpp
+!(a && b)  ==  !a || !b
+!(a || b)  ==  !a && !b
+```
+
+So `!(x > 0 && x < 10)` is the same as `x <= 0 || x >= 10`. Both versions are correct, so use whichever is easier to read.
+
+## Quick check
+
+What does each line print?
+
+```cpp
+cout << !5 << '\n';
+cout << !(3 > 2 && 2 > 5) << '\n';
+cout << (!true || !false) << '\n';
+```
+
 ### The ternary shortcut
 
 ```cpp
