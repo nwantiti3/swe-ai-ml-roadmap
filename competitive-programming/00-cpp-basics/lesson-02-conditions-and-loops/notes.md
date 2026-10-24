@@ -73,6 +73,7 @@ int main() {
 
     int n = 7;
     cout << !(n % 2 == 0) << '\n';             // 1  (n is NOT even)
+                                               // Since the (n%2 == 0) condition result is FALSE, (!) flips it to TRUE
     cout << !n << '\n';                        // 0  (7 is non-zero = true, so !7 = false)
     cout << !0 << '\n';                        // 1
 
