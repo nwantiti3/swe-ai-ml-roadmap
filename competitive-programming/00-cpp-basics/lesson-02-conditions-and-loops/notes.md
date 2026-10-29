@@ -188,6 +188,7 @@ int main() {
 }
 ```
 Code: [`examples/09_break_continue.cpp`](examples/09_break_continue.cpp)
+
 The code above works like this:-
 ```cpp
 for (int i = 1; i <= 8; i++) {
@@ -202,6 +203,23 @@ cout << '\n';   // prints: 2 4 6 8
 ### Nested loops
 
 A loop inside a loop. The inner loop runs fully for every round of the outer loop.
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    // Outer loop = rows, inner loop = columns. Total work: about n * n / 2.
+    for (int row = 1; row <= n; row++) {
+        for (int col = 1; col <= row; col++) {
+            cout << '*';
+        }
+        cout << '\n';
+    }
+    return 0;
+}
+```
 
 Code: [`examples/10_nested_loops.cpp`](examples/10_nested_loops.cpp)
 
