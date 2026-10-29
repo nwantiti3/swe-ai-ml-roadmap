@@ -172,8 +172,32 @@ Code: [`examples/05_digit_sum.cpp`](examples/05_digit_sum.cpp)
 
 - `break` leaves the loop immediately.
 - `continue` skips the rest of this round and goes to the next one.
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    // continue: skip the rest of this round. break: leave the loop.
+    for (int i = 1; i <= 10; i++) {
+        if (i % 2 == 1) continue;   // skip odd numbers
+        if (i > 8) break;           // stop after 8
+        cout << i << ' ';
+    }
+    cout << '\n';                   // prints: 2 4 6 8
+    return 0;
+}
+```
 Code: [`examples/09_break_continue.cpp`](examples/09_break_continue.cpp)
+The code above works like this:-
+```cpp
+for (int i = 1; i <= 8; i++) {
+    if (i % 2 == 0) {
+        cout << i << ' ';
+    }
+}
+cout << '\n';   // prints: 2 4 6 8
+```
+
 
 ### Nested loops
 
